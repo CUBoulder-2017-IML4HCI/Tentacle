@@ -68,6 +68,8 @@ class Stepper:
       self.pin_reset,
       self.name
     )
+    # Set to use full steps
+    self.easydriver_stepper.set_full_step()
 
   def set_zero_point(self):
     """Set the current stepper position as our zero point"""
