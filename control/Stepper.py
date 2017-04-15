@@ -73,6 +73,14 @@ class Stepper:
     self.current_position = 0.0
     self.goal_position = 0.0
 
+  def move_to_percent_position(self, position_in_percent):
+    """Set stepper to move to position as percent of extrema"""
+    if position_in_percent > 0:
+      self.move_to_position(self.max_position * position_in_percent)
+    else:
+      # Both will be negative, so we have to also multiply by -1 so result is negative
+      self.move_to_position(-1 * self.min_position * position_in_percent)
+
   def move_to_position(self, position_in_steps):
       """Set stepper to move to a given position"""
 

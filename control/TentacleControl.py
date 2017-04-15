@@ -12,7 +12,6 @@ class Osc2Steppers:
 
         self.debug = True
 
-        # listen for OSC messages on port 12000 (Wekinator default)
         self.stepper_count = 2 #4
 
         # Pin order:             [ENB|MS1|MS2|MS3|RST|SLP|STP|DIR]
@@ -41,8 +40,6 @@ class Osc2Steppers:
 
     def wek_outputs_handler(self, addr, tags, data, client_address):
         """Callback that is called when we receive an osc message with path '/wek/outputs'"""
-        data[0] *= 150
-        data[1] *= 150
         if self.debug:
             print "OSCMessage '%s' from %s: %s" % (addr, client_address, data)
 
@@ -52,10 +49,11 @@ class Osc2Steppers:
 
         # HERE'S THE MAGIC!
         # Pass on values to our stepper motors
+
         #self.stepper_A.move_to_position(data[0])
-        self.stepper_B.move_to_position(data[0])
+        self.stepper_B.move_to_percent_position(data[0])
         #self.stepper_C.move_to_position(data[2])
-        self.stepper_D.move_to_position(data[1])
+        self.stepper_D.move_to_percent_position(data[1])
 
 
 if __name__ == "__main__":
