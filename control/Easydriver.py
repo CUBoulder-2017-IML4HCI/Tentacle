@@ -7,7 +7,7 @@ import time, sys
 
 
 class Easydriver(object):
-    def __init__(self,pin_step=0,delay=0.1,pin_direction=0,pin_ms1=0,pin_ms2=0,pin_ms3=0,pin_sleep=0,pin_enable=0,pin_reset=0,name="Stepper"):
+    def __init__(self,pin_step=0,delay=0.01,pin_direction=0,pin_ms1=0,pin_ms2=0,pin_ms3=0,pin_sleep=0,pin_enable=0,pin_reset=0,name="Stepper"):
         self.pin_step = pin_step
         self.delay = delay / 2
         self.pin_direction = pin_direction

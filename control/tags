@@ -1,0 +1,63 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Easydriver	Easydriver.py	/^class Easydriver(object):$/;"	c
+Easydriver	Easydriver_stub.py	/^class Easydriver(object):$/;"	c
+Osc2Steppers	TentacleControl.py	/^class Osc2Steppers:$/;"	c
+Stepper	Stepper.py	/^class Stepper:$/;"	c
+__init__	Easydriver.py	/^    def __init__(self,pin_step=0,delay=0.1,pin_direction=0,pin_ms1=0,pin_ms2=0,pin_ms3=0,pin_sleep=0,pin_enable=0,pin_reset=0,name="Stepper"):$/;"	m	class:Easydriver
+__init__	Easydriver_stub.py	/^    def __init__(self,pin_step=0,delay=0.1,pin_direction=0,pin_ms1=0,pin_ms2=0,pin_ms3=0,pin_sleep=0,pin_enable=0,pin_reset=0,name="Stepper"):$/;"	m	class:Easydriver
+__init__	Stepper.py	/^  def __init__(self, pins_array, name="Stepper", update_interval_seconds=0.25):$/;"	m	class:Stepper
+__init__	TentacleControl.py	/^    def __init__(self, osc_ip='127.0.0.1', osc_port=12000):$/;"	m	class:Osc2Steppers
+closeness_threshold	Stepper.py	/^  closeness_threshold = 0.5$/;"	v	class:Stepper
+current_position	Stepper.py	/^  current_position = 0.0$/;"	v	class:Stepper
+debug	Stepper.py	/^  debug = True$/;"	v	class:Stepper
+disable	Easydriver.py	/^    def disable(self):$/;"	m	class:Easydriver
+disable	Easydriver_stub.py	/^    def disable(self):$/;"	m	class:Easydriver
+enable	Easydriver.py	/^    def enable(self):$/;"	m	class:Easydriver
+enable	Easydriver_stub.py	/^    def enable(self):$/;"	m	class:Easydriver
+finish	Easydriver.py	/^    def finish(self):$/;"	m	class:Easydriver
+finish	Easydriver_stub.py	/^    def finish(self):$/;"	m	class:Easydriver
+go	Stepper.py	/^  def go(self):$/;"	m	class:Stepper
+go	TentacleControl.py	/^    def go(self):$/;"	m	class:Osc2Steppers
+goal_position	Stepper.py	/^  goal_position = 0.0$/;"	v	class:Stepper
+is_running	Stepper.py	/^  is_running = False$/;"	v	class:Stepper
+max_position	Stepper.py	/^  max_position = +40.0$/;"	v	class:Stepper
+min_position	Stepper.py	/^  min_position = -40.0$/;"	v	class:Stepper
+move_to_position	Stepper.py	/^  def move_to_position(self, position_in_steps):$/;"	m	class:Stepper
+reset	Easydriver.py	/^    def reset(self):$/;"	m	class:Easydriver
+reset	Easydriver_stub.py	/^    def reset(self):$/;"	m	class:Easydriver
+set_delay	Easydriver.py	/^    def set_delay(self, delay):$/;"	m	class:Easydriver
+set_delay	Easydriver_stub.py	/^    def set_delay(self, delay):$/;"	m	class:Easydriver
+set_direction	Easydriver.py	/^    def set_direction(self,direction):$/;"	m	class:Easydriver
+set_direction	Easydriver_stub.py	/^    def set_direction(self,direction):$/;"	m	class:Easydriver
+set_eighth_step	Easydriver.py	/^    def set_eighth_step(self):$/;"	m	class:Easydriver
+set_eighth_step	Easydriver_stub.py	/^    def set_eighth_step(self):$/;"	m	class:Easydriver
+set_full_step	Easydriver.py	/^    def set_full_step(self):$/;"	m	class:Easydriver
+set_full_step	Easydriver_stub.py	/^    def set_full_step(self):$/;"	m	class:Easydriver
+set_half_step	Easydriver.py	/^    def set_half_step(self):$/;"	m	class:Easydriver
+set_half_step	Easydriver_stub.py	/^    def set_half_step(self):$/;"	m	class:Easydriver
+set_quarter_step	Easydriver.py	/^    def set_quarter_step(self):$/;"	m	class:Easydriver
+set_quarter_step	Easydriver_stub.py	/^    def set_quarter_step(self):$/;"	m	class:Easydriver
+set_sixteenth_step	Easydriver.py	/^    def set_sixteenth_step(self):$/;"	m	class:Easydriver
+set_sixteenth_step	Easydriver_stub.py	/^    def set_sixteenth_step(self):$/;"	m	class:Easydriver
+set_zero_point	Stepper.py	/^  def set_zero_point(self):$/;"	m	class:Stepper
+sleep	Easydriver.py	/^    def sleep(self):$/;"	m	class:Easydriver
+sleep	Easydriver_stub.py	/^    def sleep(self):$/;"	m	class:Easydriver
+step	Easydriver.py	/^    def step(self):$/;"	m	class:Easydriver
+step	Easydriver_stub.py	/^    def step(self):$/;"	m	class:Easydriver
+stepper_A	stepper_test.py	/^stepper_A = Stepper([  4,  7,  6,  5,  0,  0,  3,  2],$/;"	v
+stepper_B	stepper_test.py	/^stepper_B = Stepper([ 10, 11, 12, 13,  0,  0,  9,  8],$/;"	v
+stepper_C	stepper_test.py	/^stepper_C = Stepper([ 16, 17, 18, 19,  0,  0, 15, 14],$/;"	v
+stepper_D	stepper_test.py	/^stepper_D = Stepper([ 22, 23, 24, 25,  0,  0, 21, 20],$/;"	v
+stepper_time_interval_seconds	TentacleControl.py	/^    stepper_time_interval_seconds = 0.25$/;"	v	class:Osc2Steppers
+stepper_time_interval_seconds	stepper_test.py	/^stepper_time_interval_seconds = 0.1$/;"	v
+stop	Stepper.py	/^  def stop(self):$/;"	m	class:Stepper
+tentacle_listener	TentacleControl.py	/^    tentacle_listener = Osc2Steppers()$/;"	v
+update	Stepper.py	/^  def update(self):$/;"	m	class:Stepper
+wake	Easydriver.py	/^    def wake(self):$/;"	m	class:Easydriver
+wake	Easydriver_stub.py	/^    def wake(self):$/;"	m	class:Easydriver
+wek_outputs_handler	TentacleControl.py	/^    def wek_outputs_handler(self, addr, tags, data, client_address):$/;"	m	class:Osc2Steppers
