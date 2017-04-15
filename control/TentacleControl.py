@@ -5,7 +5,7 @@ import OSC
 class Osc2Steppers:
     """Class that listens for OSC messages, and forwards them as target positions for stepper motors"""
 
-    stepper_time_interval_seconds = 0.05
+    stepper_time_interval_seconds = 0.00
 
     def __init__(self, osc_ip='0.0.0.0', osc_port=12000):
         """Create our stepper object and osc server object"""
@@ -41,8 +41,8 @@ class Osc2Steppers:
 
     def wek_outputs_handler(self, addr, tags, data, client_address):
         """Callback that is called when we receive an osc message with path '/wek/outputs'"""
-        data[0] *= 100
-        data[1] *= 100
+        data[0] *= 150
+        data[1] *= 150
         if self.debug:
             print "OSCMessage '%s' from %s: %s" % (addr, client_address, data)
 

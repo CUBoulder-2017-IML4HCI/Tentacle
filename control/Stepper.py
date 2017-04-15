@@ -51,9 +51,6 @@ class Stepper:
     self.update_interval_seconds = update_interval_seconds
 
     stepper_delay = 0.005
-    if update_interval_seconds < (2 * stepper_delay):
-      raise Exception("Error: Update interval (%.2f) is smaller than 2*stepper_delay. (%.2f)" % (update_interval_seconds, stepper_delay))
-
 
     """Create driver object with these pins for this stepper"""
     self.easydriver_stepper = ed.Easydriver(
