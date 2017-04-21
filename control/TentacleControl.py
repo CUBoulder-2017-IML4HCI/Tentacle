@@ -1,6 +1,8 @@
 from Stepper import Stepper
 import time
 import OSC
+import serial
+import threading
 
 class Osc2Steppers:
     """Class that listens for OSC messages, and forwards them as target positions for stepper motors"""
@@ -11,6 +13,8 @@ class Osc2Steppers:
         """Create our stepper object and osc server object"""
 
         self.debug = True
+        self.light_count = 0;
+        self.is_running = True
 
         # listen for OSC messages on port 12000 (Wekinator default)
         self.stepper_count = 2 #4
@@ -30,13 +34,38 @@ class Osc2Steppers:
         self.OSCServer.addMsgHandler('/wek/outputs', self.wek_outputs_handler)
         print "Tentacle Control is listening for OSC message /wek/outputs, ip %s port %s" % (osc_ip, osc_port)
 
+        # Create serial connection to arduino
+        self.arduino_serial = serial.Serial('/dev/ttyACM0', 9600)
+
+        self.arduino_serial.write("60B")
+
+        self.update_lights()
+
+    def update_lights(self):
+        if self.is_running:
+            try:
+                distance = abs(self.stepper_B.current_position - self.stepper_B.goal_position)
+
+                if (distance != self.light_count):
+                    self.arduino_serial.write("%d%s" % (distance, "B"))
+                    self.light_count = distance
+
+                threading.Timer(0.2, self.update_lights).start()
+            except KeyboardInterrupt:
+                thread.interrupt_main()
+                self.is_running = false
+                self.stepper_A.stop()
+                self.stepper_B.stop()
+                self.stepper_C.stop()
+                self.stepper_D.stop()
+
 
     def go(self):
         """Start steppers self-updating, and start our OSC server listening"""
         #self.stepper_A.go()
         self.stepper_B.go()
-        # self.stepper_C.go()
-        self.stepper_D.go()
+        self.stepper_C.go()
+        # self.stepper_D.go()
         self.OSCServer.serve_forever()
 
     def wek_outputs_handler(self, addr, tags, data, client_address):
@@ -46,16 +75,29 @@ class Osc2Steppers:
         if self.debug:
             print "OSCMessage '%s' from %s: %s" % (addr, client_address, data)
 
+
         if (len(data) != self.stepper_count):
             print "Error: Expected %s OSC values, got %s" % (self.stepper_count, len(data))
             return
+
 
         # HERE'S THE MAGIC!
         # Pass on values to our stepper motors
         #self.stepper_A.move_to_position(data[0])
         self.stepper_B.move_to_position(data[0])
-        #self.stepper_C.move_to_position(data[2])
-        self.stepper_D.move_to_position(data[1])
+        self.stepper_C.move_to_position(data[1])
+        # self.stepper_D.move_to_position(data[1])
+
+        # print "Hi!"
+
+        # # Update lights
+        # self.light_count += 1
+        # if (self.light_count % 1) == 0:
+        #     print "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+        #     distance = abs(self.stepper_B.current_position - self.stepper_B.goal_position)
+        #     self.arduino_serial.write("%d%s" % (distance, "B"))
+        #     self.light_count = 0
+
 
 
 if __name__ == "__main__":

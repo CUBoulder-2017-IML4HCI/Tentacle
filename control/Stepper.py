@@ -95,40 +95,45 @@ class Stepper:
   def update(self):
     """Move stepper towards goal."""
 
-    # TODO: Later: Implement PID loop with encoders.
+    try:
+      # TODO: Later: Implement PID loop with encoders.
 
-    if abs(self.goal_position - self.current_position) < self.closeness_threshold:
-      # Do nothing if we're already there
+      if abs(self.goal_position - self.current_position) < self.closeness_threshold:
+        # Do nothing if we're already there
 
-      if self.debug:
-        print "%.4f-%s\tIn goal position: %.2f" % (time.clock(), self.name, self.current_position)
+        if self.debug:
+          print "%.4f-%s\tIn goal position: %.2f" % (time.clock(), self.name, self.current_position)
 
-    else:
-      # Move toward goal
-      goal_delta = self.goal_position - self.current_position
-
-      # Determine direction
-      direction = 1 if (goal_delta > 0.0) else 0 # 1/0 to indicate direction
-      self.easydriver_stepper.set_direction(direction)
-
-      # Make the move!
-      # TODO: Implement ramp up and ramp down in movement speed
-      move_steps = 1.0 # For now we always move one step.
-      self.easydriver_stepper.step()
-
-      # Record that we moved
-      # TODO: This should come from encoders instead of this bookkeeping
-      if direction == 1:
-        self.current_position = self.current_position + move_steps
       else:
-        self.current_position = self.current_position - move_steps
+        # Move toward goal
+        goal_delta = self.goal_position - self.current_position
 
-      if self.debug:
-        print "%.4f-%s\tMoved: %.2f steps\tDirection: %s\tNew Position:%.2f Goal: %.2f" % (time.clock(), self.name, move_steps, direction, self.current_position, self.goal_position)
+        # Determine direction
+        direction = 1 if (goal_delta > 0.0) else 0 # 1/0 to indicate direction
+        self.easydriver_stepper.set_direction(direction)
 
-    # If we're running, call this method again after time interval
-    if self.is_running:
-      threading.Timer(self.update_interval_seconds, self.update).start()
+        # Make the move!
+        # TODO: Implement ramp up and ramp down in movement speed
+        move_steps = 1.0 # For now we always move one step.
+        self.easydriver_stepper.step()
+
+        # Record that we moved
+        # TODO: This should come from encoders instead of this bookkeeping
+        if direction == 1:
+          self.current_position = self.current_position + move_steps
+        else:
+          self.current_position = self.current_position - move_steps
+
+        if self.debug:
+          print "%.4f-%s\tMoved: %.2f steps\tDirection: %s\tNew Position:%.2f Goal: %.2f" % (time.clock(), self.name, move_steps, direction, self.current_position, self.goal_position)
+
+      # If we're running, call this method again after time interval
+      if self.is_running:
+        threading.Timer(self.update_interval_seconds, self.update).start()
+
+    except KeyboardInterrupt:
+      self.is_running = false
+      thread.interrupt_main()
 
 
 
