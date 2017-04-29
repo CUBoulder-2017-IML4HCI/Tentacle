@@ -1,4 +1,4 @@
-from __future__ import print_function
+`from __future__ import print_function
 
 from common import *
 from myo_raw import MyoRaw
@@ -54,6 +54,11 @@ def stop_run():
     oscmsg.setAddress("/wekinator/control/stopRunning")
     wek.send(oscmsg)
 
+def delete():
+	oscmsg = OSC.OSCMessage()
+    oscmsg.setAddress("/wekinator/control/deleteAllExamples")
+    wek.send(oscmsg)
+	 
 def send(data): 
     oscmsg = OSC.OSCMessage()
     oscmsg.setAddress("/wek/inputs")
@@ -106,6 +111,9 @@ class Echo(protocol.Protocol):
         elif(data == "9"):
             print("Received 9")
             stop_run()
+        elif(data == "10"):
+        	print("Received 10")
+        	delete()
         reply = str(data) + "reply"
         self.transport.write(reply)    
         
