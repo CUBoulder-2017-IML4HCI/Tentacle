@@ -1,4 +1,4 @@
-`from __future__ import print_function
+from __future__ import print_function
 
 from common import *
 from myo_raw import MyoRaw
@@ -9,25 +9,40 @@ import socket
 wek = OSC.OSCClient()
 wek.connect(('127.0.0.1', 6448))
 
-
+tenta = OSC.OSCClient()
+tenta.connect(('127.0.0.1', 12001))
 
 def set_output(state):
     oscmsg = OSC.OSCMessage()
     oscmsg.setAddress("/wekinator/control/outputs")
+    #oscmsg_ping is the message to send directly to the tentacle while training
+    oscmsg_ping = OSC.OSCMessage()
+    oscmsg_ping.setAddress("/wek/outputs")
     if state is 1:
         oscmsg.append(float(-1.0))
         oscmsg.append(float(1.0))
+        oscmsg_ping.append(float(-1.0))
+        oscmsg_ping.append(float(1.0))
     elif state is 2:
         oscmsg.append(float(-1.0))
         oscmsg.append(float(-1.0))
+        oscmsg_ping.append(float(-1.0))
+        oscmsg_ping.append(float(-1.0))
     elif state is 3:
         oscmsg.append(float(1.0))
         oscmsg.append(float(1.0))
+        oscmsg_ping.append(float(1.0))
+        oscmsg_ping.append(float(1.0))
     elif state is 4:
         oscmsg.append(float(1.0))
         oscmsg.append(float(-1.0))
+        oscmsg_ping.append(float(1.0))
+        oscmsg_ping.append(float(-1.0))
     wek.send(oscmsg)
+    for i in range(300):
+      tenta.send(oscmsg_ping)
     print(oscmsg)
+    print(oscmsg_ping)
 
 def start_record():
     oscmsg = OSC.OSCMessage()
@@ -55,10 +70,18 @@ def stop_run():
     wek.send(oscmsg)
 
 def delete():
-	oscmsg = OSC.OSCMessage()
+    oscmsg = OSC.OSCMessage()
     oscmsg.setAddress("/wekinator/control/deleteAllExamples")
     wek.send(oscmsg)
-	 
+
+    oscmsg_ping = OSC.OSCMessage()
+    oscmsg_ping.setAddress("/wek/outputs")
+    oscmsg_ping.append(float(1.0))
+    oscmsg_ping.append(float(-1.0))
+    for i in range(300):
+      tenta.send(oscmsg_ping)
+    #tenta.send(oscmsg_reset)
+     
 def send(data): 
     oscmsg = OSC.OSCMessage()
     oscmsg.setAddress("/wek/inputs")
@@ -71,9 +94,9 @@ def send(data):
     #print(data)
 
 def imu(quat,acc,gyro):
-    	#print(quat,acc,gyro)
-    	#print(quat,acc,gyro)
-    	send(quat)
+        #print(quat,acc,gyro)
+        #print(quat,acc,gyro)
+        send(quat)
 
 
 
@@ -112,8 +135,8 @@ class Echo(protocol.Protocol):
             print("Received 9")
             stop_run()
         elif(data == "10"):
-        	print("Received 10")
-        	delete()
+            print("Received 10")
+            delete()
         reply = str(data) + "reply"
         self.transport.write(reply)    
         

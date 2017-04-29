@@ -7,7 +7,7 @@ class Osc2Steppers:
 
     stepper_time_interval_seconds = 0.00
 
-    def __init__(self, osc_ip='0.0.0.0', osc_port=12000):
+    def __init__(self, osc_ip='0.0.0.0', osc_port=12000, osc_port_train=12001):
         """Create our stepper object and osc server object"""
 
         self.debug = True
@@ -28,6 +28,9 @@ class Osc2Steppers:
 
         self.OSCServer = OSC.OSCServer((osc_ip, osc_port))
         self.OSCServer.addMsgHandler('/wek/outputs', self.wek_outputs_handler)
+        #self.OSCServer_set = OSC.OSCServer((osc_ip, osc_port_train))
+        #self.OSCServer.addMsgHandler('/wek/outputs', self.wek_outputs_handler)
+
         print "Tentacle Control is listening for OSC message /wek/outputs, ip %s port %s" % (osc_ip, osc_port)
 
 
@@ -36,13 +39,17 @@ class Osc2Steppers:
         #self.stepper_A.go()
         self.stepper_B.go()
         # self.stepper_C.go()
-        self.stepper_D.go()
+        self.stepper_D.go() 
+        #self.OSCServer_set.serve_forever()
         self.OSCServer.serve_forever()
+
 
     def wek_outputs_handler(self, addr, tags, data, client_address):
         """Callback that is called when we receive an osc message with path '/wek/outputs'"""
-        data[0] *= 250
-        data[1] *= 250
+        # 0 controls back and front
+        # 1 controls side to side
+        data[0] *= 200
+        data[1] *= 400 
         if self.debug:
             print "OSCMessage '%s' from %s: %s" % (addr, client_address, data)
 
@@ -53,12 +60,15 @@ class Osc2Steppers:
         # HERE'S THE MAGIC!
         # Pass on values to our stepper motors
         #self.stepper_A.move_to_position(data[0])
+        self.stepper_B.set_delay()
         self.stepper_B.move_to_position(data[0])
         #self.stepper_C.move_to_position(data[2])
+        self.stepper_D.set_delay()
         self.stepper_D.move_to_position(data[1])
 
 
 if __name__ == "__main__":
     """We are being called directly--just start listening"""
     tentacle_listener = Osc2Steppers()
+    # while 12001 msg
     tentacle_listener.go()
