@@ -19,36 +19,273 @@
 -->
 <html>
     <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Graboid</title>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <title>Hello World</title>
     </head>
     <body>
-    <div id="top"><br><br>
-    <h1>Graboid Remote Control</h1><br><br>
-    </div>
         <div class="app">
-            
-        </div>
-        <div id="bottom">
-            <br><br>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="train.html" class="button">start</a><br><br><br><br>
-             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="run.html" class="button">run</a>
+            <h1>Graboid Remote Control</h1>
 
+            <div id="menu">
+
+                <br />
+                
+
+                <h2>Please enter the ip address and port of the Tentacle</h2>
+                <input id="host" type="text" onkeypress="sendCommand(event)" placeholder="ip address"/>
+                <input id="port" type="number" onkeypress="sendCommand(event)" placeholder="port"/>
+                <!--<a href="train.html" class="button">train</a><br><br><br><br>-->
+
+                <input id="connect-to-custom-srver" type="button" onclick="connectToCustomHost()" value="Connect" />
+            </div>
+            <!--<div id="console">
+                <ul id="data-output"></ul>
+                <input id="command-input" type="text" onkeypress="sendCommand(event)"/>
+            </div>-->
+            <div id="main_menu" style="display:none">
+                <center><br><br>
+                    <img src="img/logo.png" style="width:200px;height:200px;"><br><br><br>
+                    <input id="train_button" type="button" onclick="displayTrain(0);" value="Train" />
+                    <br><br><br>
+                   <input id="run_button" type="button" onclick="displayRun();" value="Run" disabled="disabled" /><br><br><br>
+                   <input id="connect_button" type="button" onclick="displayMenu('main_menu');" value="Reconnect" />
+            </div>
+
+            <div id="train1" style="display:none"><h2>Train</h2><br><br><center>Place your arm in the position you want to correspond with the current Tentacle position </center><br><br><br><input id="train_button" type="button" onclick="displayTrain(1);" value="Train" />
+            </div>
+           
+            <div id="train2" style="display:none"><h2>Train</h2><br><br><center>Place your arm in the position you want to correspond with the current Tentacle position </center><br><br><br><input id="train_button" type="button" onclick="displayTrain(2);" value="Train" />
+            </div>
+
+            <div id="train3" style="display:none"><h2>Train</h2><br><br><center>Place your arm in the position you want to correspond with the current Tentacle position </center><br><br><br><input id="train_button" type="button" onclick="displayTrain(3);" value="Train" />
+            </div>
+
+            <div id="train4" style="display:none"><h2>Train</h2><br><br><center>Place your arm in the position you want to correspond with the current Tentacle position </center><br><br><br><input id="train_button" type="button" onclick="displayTrain(4);" value="Train" />
+            </div>
+
+            <div id="wait_msg" style="display:none"><h2>PLEASE WAIT WHILE TENTACLE LEARNS</h2></div>
+
+            <div id="run_page" style="display:none"><h2>Run</h2><br><br><center>The Tentacle is running. Press stop to end.</center><br><br><br><input id="stop_button" type="button" onclick="displayMainMenu();" value="Stop" />
+            </div>
+        
         </div>
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            var socket;
+
+            document.addEventListener("deviceready", function() {
+                StatusBar.hide();
+
+                setStyles();
+            });
+
+            window.addEventListener("resize", setStyles);
+
+            function setStyles() {
+                var dataOutput = document.getElementById("data-output");
+                //document.getElementById("body2").hide();
+                dataOutput.style.height = (window.innerHeight - 85) + "px";
+            }
+
+            function connectToCustomHost() {
+                    
+                console.log("HELLO");
+                var host = document.getElementById("host").value;
+                var port = document.getElementById("port").value;
+                //var myData = window.localStorage.key(0);
+                //window.localStorage.setItem("myData", "Smith123");
+
+                if (host == "" || port == "") {
+                    alert("Host and port cannot be empty.");
+                }
+                else {
+                    connectToHost(host, parseInt(port));
+                }
+            }
+
+
+            function connectToHost(host, port) {
+                window.socket = new Socket();
+                window.socket.onData = receiveData;
+                window.socket.onError = function(errorMessage) {
+                    alert("Error occured, error: " + errorMessage);
+                };
+                window.socket.onClose = function(hasError) {
+                    console.info("Socket closed, hasErrors=" + hasError);
+                    setDisconnected();
+                };
+                window.socket.open(
+                        host,
+                        port,
+                        setConnected,
+                        function(errorMessage) {
+                            alert("Error during connection, error: " + errorMessage);
+                        });
+            }
+
+
+            function addTextToOutputElement(text) {
+                var dataOutput = document.getElementById("data-output");
+                var line = document.createElement("li");
+                line.innerText = text;
+                dataOutput.appendChild(line);
+                dataOutput.scrollTop = dataOutput.scrollHeight;
+            }
+
+            function receiveData(data) {
+                var chars = new Array(data.length);
+                for (var i = 0; i < data.length; i++) {
+                    chars.push(String.fromCharCode(data[i]));
+                }
+                var dataString = chars.join("");
+                dataString.split(/(?:\r\n|\r|\n)/g).forEach(addTextToOutputElement);
+            }
+
+            function sendCommand(event) {
+                // send data on enter button clicked
+                if(event.charCode == 13) {
+                    var input = document.getElementById("command-input");
+                    var command = input.value;
+                    var bytes = new Uint8Array(command.length + 1);
+                    for (var i = 0; i < command.length; i++) {
+                        bytes[i] = command.charCodeAt(i);
+                    }
+                    bytes[command.length] = "\n".charCodeAt(0);
+                    socket.write(bytes);
+                    input.value = "";
+                }
+            }
+            function sendData(msg) {
+                console.log("HEERE IN SENDDATA!!!!");
+                var command = msg;
+                var bytes = new Uint8Array(command.length + 1);
+                for (var i = 0; i < command.length; i++) {
+                    bytes[i] = command.charCodeAt(i);
+                    }
+                bytes[command.length] = "\n".charCodeAt(0);
+                socket.write(bytes);
+                // send data on enter button clicked
+                /*console.log("IN SENDDATA");
+                //console.log(msg);
+                var command = msg;
+                console.log(command.length);
+                var bytes = new Uint8Array(command.length + 1);
+                for (var i = 0; i < command.length; i++) {
+                    console.log("i: ");
+                    console.log(i);
+                    console.log("HERE IN SENDDATA!!!!!!!!!");
+                    bytes[i] = command.charCodeAt(i);
+                    console.log("HERE IN SENDDATA12345");
+                }
+                bytes[command.length] = "\n".charCodeAt(0);
+                console.log("AFTER ByteST!!!!");
+                socket.write("1");
+                console.log("AFTER WRITE!!!!");
+
+                input.value = "";*/
+                
+            }
+
+            function setConnected() {
+                var menuEl = document.getElementById("menu");
+                menuEl.style.display = "none";
+
+                var main_menu = document.getElementById('main_menu');
+                main_menu.style.display = 'block';
+
+
+                /*var command = "1";
+                var bytes = new Uint8Array(command.length + 1);
+                for (var i = 0; i < command.length; i++) {
+                    bytes[i] = command.charCodeAt(i);
+                    }
+                bytes[command.length] = "\n".charCodeAt(0);
+                socket.write(bytes);*/
+
+                //var consoleEl = document.getElementById("console");
+                //consoleEl.style.display = "block";
+            }
+            function setDisconnected() {
+                var menuEl = document.getElementById("menu");
+                menuEl.style.display = "block";
+
+                var consoleEl = document.getElementById("console");
+                consoleEl.style.display = "none";
+            }
+            function displayMenu(pageToHide) {
+                document.getElementById('menu').style.display = 'block'; 
+                document.getElementById(pageToHide).style.display = 'none'; 
+            }
+            function displayTrain(segment) {
+                switch(segment) {
+                    case 0:
+                        sendData('1');
+                        document.getElementById('train1').style.display = 'block'; 
+                        document.getElementById('main_menu').style.display = 'none'; 
+                        break;
+                    case 1:
+                        //document.getElementById('wait_msg').style.display = 'block';
+                        //document.getElementById('train_button').disabled = true;
+                        sendData('5');
+                        sleep(5000);
+                        sendData('6');
+                        document.getElementById('train2').style.display = 'block'; 
+                        document.getElementById('train1').style.display = 'none'; 
+                        //document.getElementById('wait_msg').style.display = 'none';
+                        sendData('2');
+                        //sleep(2000);
+                        //document.getElementById('train_button').disabled = false;
+                        break;
+                    case 2:
+                        sendData('5');
+                        sleep(5000);
+                        sendData('6');
+                        document.getElementById('train3').style.display = 'block'; 
+                        document.getElementById('train2').style.display = 'none'; 
+                        sendData('3');
+                        break;
+                    case 3:
+                        sendData('5');
+                        sleep(5000);
+                        sendData('6');
+                        document.getElementById('train4').style.display = 'block'; 
+                        document.getElementById('train3').style.display = 'none'; 
+                        sendData('4');
+                        break;
+                    case 4:
+                        sendData('5');
+                        sleep(5000);
+                        sendData('6');
+                        document.getElementById('main_menu').style.display = 'block'; 
+                        document.getElementById('run_button').disabled = false;
+                        document.getElementById('train4').style.display = 'none'; 
+                        break;
+                }
+            }
+            function displayRun() {
+                sendData('8');
+                document.getElementById('run_page').style.display = 'block'; 
+                document.getElementById('main_menu').style.display = 'none'; 
+            }
+            function displayMainMenu(pageToHide) {
+                sendData('9');
+                document.getElementById('main_menu').style.display = 'block'; 
+                document.getElementById('run_page').style.display = 'none'; 
+            }
+            function sleep(millis) {    
+                var date = new Date();
+                var curDate = null;
+                do { curDate = new Date(); }
+                while(curDate-date < millis);
+            }
+
+            setDisconnected();
+        </script>
     </body>
 </html>

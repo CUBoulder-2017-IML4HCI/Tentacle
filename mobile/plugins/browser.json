@@ -1,0 +1,24 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cz.blocshop.socketsforcordova": {
+            "PACKAGE_NAME": "cz.blocshop.socketsforcordova.tester"
+        },
+        "org.apache.cordova.statusbar": {
+            "PACKAGE_NAME": "cz.blocshop.socketsforcordova.tester"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "cz.blocshop.socketsforcordova.tester"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "io.cordova.Graboid"
+        }
+    },
+    "dependent_plugins": {}
+}

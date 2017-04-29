@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.cordova.Graboid" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <feature name="SocketsForCordova">
+        <param name="wp-package" value="Blocshop.ScoketsForCordova.SocketPlugin" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="wp-package" value="StatusBar" />
+    </feature>
+    <feature name="Console">
+        <param name="wp-package" value="DebugConsole" />
+    </feature>
+    <name>Graboid</name>
+    <description>
+       A mobile remote control for the Graboid tentacle
+    </description>
+    <icon density="mdpi" height="57" platform="ios" src="www/img/logo.png" width="57" />
+    <icon density="mdpi" height="57" platform="android" src="www/img/logo.png" width="57" />
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+</widget>

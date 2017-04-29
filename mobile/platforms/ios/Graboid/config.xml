@@ -15,10 +15,21 @@
         <param name="ios-package" value="CDVGestureHandler" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="SocketsForCordova">
+        <param name="ios-package" value="SocketPlugin" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
+    </feature>
     <name>Graboid</name>
     <description>
        A mobile remote control for the Graboid tentacle
     </description>
+    <icon density="mdpi" height="57" platform="ios" src="www/img/logo.png" width="57" />
+    <icon density="mdpi" height="57" platform="android" src="www/img/logo.png" width="57" />
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
@@ -45,4 +56,6 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
 </widget>

@@ -1,149 +1,73 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+
 * {
+    -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    -webkit-user-select: auto; /* prevent copy paste, to allow, change 'none' to 'text' */
+    -ms-user-select: none;
+    line-height: 1.1em;
 }
 
-body {
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#FFFFFF;
-    /*background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );*/
-    background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
-    height:100%;
-    margin:0px;
-    padding:0px;
-    text-transform:uppercase;
-    width:100%;
+html {
+    -ms-touch-action: none;
 }
 
-/* Portrait layout (default) */
-.app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:50%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
-}
-
-#bottom{
-
-    position: absolute; bottom: 0px; 
-    left:30%;
-    top:70%;
-}
-
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
-                                      /* offset horizontal: half of image width and text area width */
-    }
-}
-
-.button{
-cursor:pointer; /*forces the cursor to change to a hand when the button is hovered*/
-padding:5px 25px; /*add some padding to the inside of the button*/
-background:#35b128; /*the colour of the button*/
-border:1px solid #33842a; /*required or the default border for the browser will appear*/
-/*give the button curved corners, alter the size as required*/
--moz-border-radius: 10px;
--webkit-border-radius: 10px;
-border-radius: 10px;
-/*give the button a drop shadow*/
--webkit-box-shadow: 0 0 4px rgba(0,0,0, .75);
--moz-box-shadow: 0 0 4px rgba(0,0,0, .75);
-box-shadow: 0 0 4px rgba(0,0,0, .75);
-/*style the text*/
-color:#f3f3f3;
-font-size:1.1em;
-}
-/***NOW STYLE THE BUTTON'S HOVER AND FOCUS STATES***/
-.button:hover, input#gobutton:focus{
-background-color :#399630; /*make the background a little darker*/
-/*reduce the drop shadow size to give a pushed button effect*/
--webkit-box-shadow: 0 0 1px rgba(0,0,0, .75);
--moz-box-shadow: 0 0 1px rgba(0,0,0, .75);
-box-shadow: 0 0 1px rgba(0,0,0, .75);
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 h1 {
-    font-size:24px;
-    font-weight:normal;
-    margin:0px;
-    overflow:visible;
-    padding:0px;
-    text-align:center;
-    color: red;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 18px;
+    text-align: center;
+    /*background-color: #44B687;*/
+    background-color: #00008B;
+    color: white;
 }
 
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
+h2 {
+    font-size: 16px;
+    text-align: center;
 }
 
-.event.listening {
-    background-color:#333333;
-    display:block;
+.app {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
 }
 
-.event.received {
-    background-color:#4B946A;
-    display:none;
+#data-output {
+    height: 50%;
+    overflow: auto;
+    font-size: 9px;
+    font-family: monospace;
+    white-space: no-wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
+#data-output li {
+    white-space: nowrap;
 }
- 
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
+
+#data-output * {
+    line-height: 1em;
 }
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
+
+input {
+    width: 95%;
+    box-sizing: border-box;
+    height: 32px;
+    margin: 10px auto 0 auto;
+    display: block;
+}
+
+#command-input {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
 }

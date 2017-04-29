@@ -1,0 +1,48 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "cz.blocshop.socketsforcordova.tester"
+        },
+        "cz.blocshop.socketsforcordova": {
+            "PACKAGE_NAME": "{c4ce7810-69da-11e4-a300-ad069f08cbc8}"
+        },
+        "org.apache.cordova.statusbar": {
+            "PACKAGE_NAME": "{c4ce7810-69da-11e4-a300-ad069f08cbc8}"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "io.cordova.Graboid"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cz.blocshop.socketsforcordova/socket.js",
+            "id": "cz.blocshop.socketsforcordova.Socket",
+            "pluginId": "cz.blocshop.socketsforcordova",
+            "clobbers": [
+                "window.Socket"
+            ]
+        },
+        {
+            "file": "plugins/org.apache.cordova.statusbar/www/statusbar.js",
+            "id": "org.apache.cordova.statusbar.statusbar",
+            "pluginId": "org.apache.cordova.statusbar",
+            "clobbers": [
+                "window.StatusBar"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-whitelist": "1.3.2",
+        "cz.blocshop.socketsforcordova": "0.1.0",
+        "org.apache.cordova.statusbar": "0.1.8",
+        "cordova-plugin-console": "1.0.6"
+    }
+}
