@@ -1,0 +1,4 @@
+
+1. run weki
+2. own.py 
+2. own_with_weki.py 
