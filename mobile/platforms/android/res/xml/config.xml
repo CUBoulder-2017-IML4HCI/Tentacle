@@ -10,9 +10,9 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <name>Graboid</name>
+    <name>NoodleBot</name>
     <description>
-       A mobile remote control for the Graboid tentacle
+       A mobile remote control for NoodleBot
     </description>
     <icon density="mdpi" height="57" platform="ios" src="www/img/logo.png" width="57" />
     <icon density="mdpi" height="57" platform="android" src="www/img/logo.png" width="57" />
