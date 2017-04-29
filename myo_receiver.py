@@ -9,7 +9,7 @@ def orientation(addr, tags, data, client_address):
     txt = "OSCMessage '%s' from %s: " % (addr, client_address)
     oscmsg = OSC.OSCMessage()
     oscmsg.setAddress("/wek/inputs")
-    for elem in data[1:]:
+    for elem in data[1:5]:
         elem = float(elem)
         oscmsg.append(elem)
 
