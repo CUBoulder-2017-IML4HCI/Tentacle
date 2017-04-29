@@ -41,8 +41,8 @@ class Osc2Steppers:
 
     def wek_outputs_handler(self, addr, tags, data, client_address):
         """Callback that is called when we receive an osc message with path '/wek/outputs'"""
-        data[0] *= 150
-        data[1] *= 150
+        data[0] *= 250
+        data[1] *= 250
         if self.debug:
             print "OSCMessage '%s' from %s: %s" % (addr, client_address, data)
 
