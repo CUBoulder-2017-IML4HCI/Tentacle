@@ -41,7 +41,6 @@ def set_output(state):
         oscmsg_ping.append(float(-1.0))
     wek.send(oscmsg)
     tenta.send(oscmsg_ping)
-
     print(oscmsg)
     print(oscmsg_ping)
 
