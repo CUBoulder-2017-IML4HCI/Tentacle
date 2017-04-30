@@ -30,7 +30,7 @@
     </head>
     <body>
         <div class="app">
-            <h1>Graboid Remote Control</h1>
+            <h1>NoodleBot Remote Control</h1>
 
             <div id="menu">
 
@@ -50,24 +50,18 @@
             </div>-->
             <div id="main_menu" style="display:none">
                 <center><br><br>
-                    <img src="img/logo.png" style="width:200px;height:200px;"><br><br><br>
+                    <img src="img/logo.png" style="width:200px;height:200px;"><br><br>
+                    <input id="delete_button" type="button" onclick="deleteTraining();" value="New User" /><br><br>
                     <input id="train_button" type="button" onclick="displayTrain(0);" value="Train" />
-                    <br><br><br>
-                   <input id="run_button" type="button" onclick="displayRun();" value="Run" disabled="disabled" /><br><br><br>
+                    <br><br>
+                   <input id="run_button" type="button" onclick="displayRun();" value="Run" disabled="disabled" /><br><br>
                    <input id="connect_button" type="button" onclick="displayMenu('main_menu');" value="Reconnect" />
             </div>
 
-            <div id="train1" style="display:none"><h2>Train</h2><br><br><center>Place your arm in the position you want to correspond with the current Tentacle position </center><br><br><br><input id="train_button" type="button" onclick="displayTrain(1);" value="Train" />
+            <div id="train" style="display:none"><h2>Train</h2><br><br><center>Place your arm in the position you want to correspond with the current Tentacle position </center><br><br><br><input id="train_button" type="button" onclick="displayTrain();" value="Train" />
+            <br><br><br><input id="cancel_button" type="button" onclick="cancelTrain();" value="Cancel Training and Go Back" />
             </div>
            
-            <div id="train2" style="display:none"><h2>Train</h2><br><br><center>Place your arm in the position you want to correspond with the current Tentacle position </center><br><br><br><input id="train_button" type="button" onclick="displayTrain(2);" value="Train" />
-            </div>
-
-            <div id="train3" style="display:none"><h2>Train</h2><br><br><center>Place your arm in the position you want to correspond with the current Tentacle position </center><br><br><br><input id="train_button" type="button" onclick="displayTrain(3);" value="Train" />
-            </div>
-
-            <div id="train4" style="display:none"><h2>Train</h2><br><br><center>Place your arm in the position you want to correspond with the current Tentacle position </center><br><br><br><input id="train_button" type="button" onclick="displayTrain(4);" value="Train" />
-            </div>
 
             <div id="wait_msg" style="display:none"><h2>PLEASE WAIT WHILE TENTACLE LEARNS</h2></div>
 
@@ -78,6 +72,7 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript">
             var socket;
+            var train_state = 0;
 
             document.addEventListener("deviceready", function() {
                 StatusBar.hide();
@@ -222,11 +217,15 @@
                 document.getElementById('menu').style.display = 'block'; 
                 document.getElementById(pageToHide).style.display = 'none'; 
             }
-            function displayTrain(segment) {
-                switch(segment) {
+            function cancelTrain(){
+                displayMainMenu('train');
+                deleteTraining();
+            }
+            function displayTrain() {
+                switch(train_state) {
                     case 0:
                         sendData('1');
-                        document.getElementById('train1').style.display = 'block'; 
+                        document.getElementById('train').style.display = 'block'; 
                         document.getElementById('main_menu').style.display = 'none'; 
                         break;
                     case 1:
@@ -235,10 +234,11 @@
                         sendData('5');
                         sleep(5000);
                         sendData('6');
-                        document.getElementById('train2').style.display = 'block'; 
-                        document.getElementById('train1').style.display = 'none'; 
+                        //document.getElementById('train2').style.display = 'block'; 
+                        //document.getElementById('train1').style.display = 'none'; 
                         //document.getElementById('wait_msg').style.display = 'none';
                         sendData('2');
+                        //document.getElementById('wait_msg').style.display = 'none';
                         //sleep(2000);
                         //document.getElementById('train_button').disabled = false;
                         break;
@@ -246,37 +246,46 @@
                         sendData('5');
                         sleep(5000);
                         sendData('6');
-                        document.getElementById('train3').style.display = 'block'; 
-                        document.getElementById('train2').style.display = 'none'; 
+                        //document.getElementById('train3').style.display = 'block'; 
+                        //document.getElementById('train2').style.display = 'none'; 
                         sendData('3');
                         break;
                     case 3:
                         sendData('5');
                         sleep(5000);
                         sendData('6');
-                        document.getElementById('train4').style.display = 'block'; 
-                        document.getElementById('train3').style.display = 'none'; 
+                        //document.getElementById('train4').style.display = 'block'; 
+                        //document.getElementById('train3').style.display = 'none'; 
                         sendData('4');
                         break;
                     case 4:
                         sendData('5');
                         sleep(5000);
                         sendData('6');
-                        document.getElementById('main_menu').style.display = 'block'; 
+                        displayMainMenu('train');
+                        //document.getElementById('main_menu').style.display = 'block'; 
                         document.getElementById('run_button').disabled = false;
-                        document.getElementById('train4').style.display = 'none'; 
+                        //document.getElementById('train4').style.display = 'none';
+                        sendData('7'); 
                         break;
                 }
+                train_state++;
             }
             function displayRun() {
                 sendData('8');
                 document.getElementById('run_page').style.display = 'block'; 
                 document.getElementById('main_menu').style.display = 'none'; 
             }
-            function displayMainMenu(pageToHide) {
-                sendData('9');
+            function displayMainMenu(pageToHide='run_page') {
+                if (pageToHide == 'run_page'){
+                    sendData('9');
+                }
                 document.getElementById('main_menu').style.display = 'block'; 
-                document.getElementById('run_page').style.display = 'none'; 
+                document.getElementById(pageToHide).style.display = 'none'; 
+            }
+            function deleteTraining(){
+                train_state = 0;
+                sendData('10');
             }
             function sleep(millis) {    
                 var date = new Date();

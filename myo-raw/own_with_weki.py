@@ -1,5 +1,5 @@
 from __future__ import print_function
-
+import time
 from common import *
 from myo_raw import MyoRaw
 from twisted.internet import reactor, protocol
@@ -10,12 +10,13 @@ wek = OSC.OSCClient()
 wek.connect(('127.0.0.1', 6448))
 
 tenta = OSC.OSCClient()
-tenta.connect(('127.0.0.1', 12001))
+tenta.connect(('127.0.0.1', 12000))
 
 def set_output(state):
     oscmsg = OSC.OSCMessage()
     oscmsg.setAddress("/wekinator/control/outputs")
     #oscmsg_ping is the message to send directly to the tentacle while training
+    #both wekinator and osc_ping are sending messages to 12000
     oscmsg_ping = OSC.OSCMessage()
     oscmsg_ping.setAddress("/wek/outputs")
     if state is 1:
@@ -39,8 +40,8 @@ def set_output(state):
         oscmsg_ping.append(float(1.0))
         oscmsg_ping.append(float(-1.0))
     wek.send(oscmsg)
-    for i in range(300):
-      tenta.send(oscmsg_ping)
+    tenta.send(oscmsg_ping)
+
     print(oscmsg)
     print(oscmsg_ping)
 
@@ -76,11 +77,9 @@ def delete():
 
     oscmsg_ping = OSC.OSCMessage()
     oscmsg_ping.setAddress("/wek/outputs")
-    oscmsg_ping.append(float(1.0))
-    oscmsg_ping.append(float(-1.0))
-    for i in range(300):
-      tenta.send(oscmsg_ping)
-    #tenta.send(oscmsg_reset)
+    oscmsg_ping.append(float(0.0))
+    oscmsg_ping.append(float(0.0))
+    tenta.send(oscmsg_ping)
      
 def send(data): 
     oscmsg = OSC.OSCMessage()

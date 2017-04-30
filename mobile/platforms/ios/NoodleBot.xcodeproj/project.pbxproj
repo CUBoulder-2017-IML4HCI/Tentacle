@@ -16,10 +16,10 @@
 		3047A5131AB8059700498E2A /* build-release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5101AB8059700498E2A /* build-release.xcconfig */; };
 		3047A5141AB8059700498E2A /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5111AB8059700498E2A /* build.xcconfig */; };
 		6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */; };
-		EA9EE1AD17324FED8193F9DB /* SocketPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 19050CB8CB6E4BA4B544FBF4 /* SocketPlugin.m */; };
-		954F6466C2CA42EE95112793 /* SocketAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 716FBE8BA25142E6874EE268 /* SocketAdapter.m */; };
-		33545D9210214B5BB8D2B33D /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6A2F0E05B94D7482AF2C65 /* CDVStatusBar.m */; };
-		D9DBA384CA2640F4B147B0FE /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 403DF562256640C098BCE5B7 /* CDVLogger.m */; };
+		9B978A4F66094C0B95E49CDB /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A11D4FE72D4F77AD974862 /* CDVLogger.m */; };
+		F162DADE8B5644D09619B320 /* SocketPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0B11E462BC4E819DA062FF /* SocketPlugin.m */; };
+		F76BF9F6213E458591092676 /* SocketAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 614C99E31FF049DF9DB99071 /* SocketAdapter.m */; };
+		BBAE25A8F14846768F66EC8A /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235DDBC3F0543B592137915 /* CDVStatusBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,10 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0207DA571B56EA530066E2B4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Graboid/Images.xcassets"; sourceTree = SOURCE_ROOT; };
+		0207DA571B56EA530066E2B4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "NoodleBot/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* Graboid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Graboid.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* NoodleBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NoodleBot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
 		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
@@ -53,21 +53,21 @@
 		3047A50F1AB8059700498E2A /* build-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-debug.xcconfig"; path = cordova/build-debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		3047A5101AB8059700498E2A /* build-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-release.xcconfig"; path = cordova/build-release.xcconfig; sourceTree = SOURCE_ROOT; };
 		3047A5111AB8059700498E2A /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = cordova/build.xcconfig; sourceTree = SOURCE_ROOT; };
-		32CA4F630368D1EE00C91783 /* Graboid-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Graboid-Prefix.pch"; sourceTree = "<group>"; };
-		6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CDVLaunchScreen.storyboard; path = "Graboid/CDVLaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
-		8D1107310486CEB800E47090 /* Graboid-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Graboid-Info.plist"; path = "Graboid/Graboid-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
+		32CA4F630368D1EE00C91783 /* NoodleBot-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NoodleBot-Prefix.pch"; sourceTree = "<group>"; };
+		6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CDVLaunchScreen.storyboard; path = "NoodleBot/CDVLaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
+		8D1107310486CEB800E47090 /* NoodleBot-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "NoodleBot-Info.plist"; path = "NoodleBot/NoodleBot-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
-		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Graboid/config.xml"; sourceTree = "<group>"; };
+		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "NoodleBot/config.xml"; sourceTree = "<group>"; };
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		19050CB8CB6E4BA4B544FBF4 /* SocketPlugin.m */ = {isa = PBXFileReference; name = "SocketPlugin.m"; path = "cz.blocshop.socketsforcordova/SocketPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		716FBE8BA25142E6874EE268 /* SocketAdapter.m */ = {isa = PBXFileReference; name = "SocketAdapter.m"; path = "cz.blocshop.socketsforcordova/SocketAdapter.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		61E4EA0679274778AABD83DC /* SocketPlugin.h */ = {isa = PBXFileReference; name = "SocketPlugin.h"; path = "cz.blocshop.socketsforcordova/SocketPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
-		EF1A5ABCE7C74472868E5393 /* SocketAdapter.h */ = {isa = PBXFileReference; name = "SocketAdapter.h"; path = "cz.blocshop.socketsforcordova/SocketAdapter.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
-		FA6A2F0E05B94D7482AF2C65 /* CDVStatusBar.m */ = {isa = PBXFileReference; name = "CDVStatusBar.m"; path = "org.apache.cordova.statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		14E94C8819D640F29926C3F5 /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "org.apache.cordova.statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
-		403DF562256640C098BCE5B7 /* CDVLogger.m */ = {isa = PBXFileReference; name = "CDVLogger.m"; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		339DAC11CE2C4D7B8B39C233 /* CDVLogger.h */ = {isa = PBXFileReference; name = "CDVLogger.h"; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		81A11D4FE72D4F77AD974862 /* CDVLogger.m */ = {isa = PBXFileReference; name = "CDVLogger.m"; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		DEA9C764FFDE47AFA94C2899 /* CDVLogger.h */ = {isa = PBXFileReference; name = "CDVLogger.h"; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		3D0B11E462BC4E819DA062FF /* SocketPlugin.m */ = {isa = PBXFileReference; name = "SocketPlugin.m"; path = "cz.blocshop.socketsforcordova/SocketPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		614C99E31FF049DF9DB99071 /* SocketAdapter.m */ = {isa = PBXFileReference; name = "SocketAdapter.m"; path = "cz.blocshop.socketsforcordova/SocketAdapter.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		ECA324DD1CFF42F3B169E704 /* SocketPlugin.h */ = {isa = PBXFileReference; name = "SocketPlugin.h"; path = "cz.blocshop.socketsforcordova/SocketPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		7A5725E59F3140098E44708B /* SocketAdapter.h */ = {isa = PBXFileReference; name = "SocketAdapter.h"; path = "cz.blocshop.socketsforcordova/SocketAdapter.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		9235DDBC3F0543B592137915 /* CDVStatusBar.m */ = {isa = PBXFileReference; name = "CDVStatusBar.m"; path = "org.apache.cordova.statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		5E3D181DCC064A9A9E13E8ED /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "org.apache.cordova.statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,13 +92,13 @@
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 			);
 			name = Classes;
-			path = "Graboid/Classes";
+			path = "NoodleBot/Classes";
 			sourceTree = SOURCE_ROOT;
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Graboid.app */,
+				1D6058910D05DD3D006BFB54 /* NoodleBot.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,12 +123,12 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* Graboid-Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* NoodleBot-Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */,
 			);
 			name = "Other Sources";
-			path = "Graboid";
+			path = "NoodleBot";
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -136,11 +136,11 @@
 			children = (
 				0207DA571B56EA530066E2B4 /* Images.xcassets */,
 				3047A50E1AB8057F00498E2A /* config */,
-				8D1107310486CEB800E47090 /* Graboid-Info.plist */,
+				8D1107310486CEB800E47090 /* NoodleBot-Info.plist */,
 				6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */,
 			);
 			name = Resources;
-			path = "Graboid/Resources";
+			path = "NoodleBot/Resources";
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -171,17 +171,17 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				19050CB8CB6E4BA4B544FBF4 /* SocketPlugin.m */,
-				716FBE8BA25142E6874EE268 /* SocketAdapter.m */,
-				61E4EA0679274778AABD83DC /* SocketPlugin.h */,
-				EF1A5ABCE7C74472868E5393 /* SocketAdapter.h */,
-				FA6A2F0E05B94D7482AF2C65 /* CDVStatusBar.m */,
-				14E94C8819D640F29926C3F5 /* CDVStatusBar.h */,
-				403DF562256640C098BCE5B7 /* CDVLogger.m */,
-				339DAC11CE2C4D7B8B39C233 /* CDVLogger.h */,
+				81A11D4FE72D4F77AD974862 /* CDVLogger.m */,
+				DEA9C764FFDE47AFA94C2899 /* CDVLogger.h */,
+				3D0B11E462BC4E819DA062FF /* SocketPlugin.m */,
+				614C99E31FF049DF9DB99071 /* SocketAdapter.m */,
+				ECA324DD1CFF42F3B169E704 /* SocketPlugin.h */,
+				7A5725E59F3140098E44708B /* SocketAdapter.h */,
+				9235DDBC3F0543B592137915 /* CDVStatusBar.m */,
+				5E3D181DCC064A9A9E13E8ED /* CDVStatusBar.h */,
 			);
 			name = Plugins;
-			path = "Graboid/Plugins";
+			path = "NoodleBot/Plugins";
 			sourceTree = SOURCE_ROOT;
 		};
 		EB87FDF11871DA420020F90C /* Staging */ = {
@@ -196,9 +196,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Graboid */ = {
+		1D6058900D05DD3D006BFB54 /* NoodleBot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Graboid" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "NoodleBot" */;
 			buildPhases = (
 				304B58A110DAC018002A0835 /* Copy www directory */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
@@ -210,9 +210,9 @@
 			dependencies = (
 				301BF551109A68C00062928A /* PBXTargetDependency */,
 			);
-			name = "Graboid";
-			productName = "Graboid";
-			productReference = 1D6058910D05DD3D006BFB54 /* Graboid.app */;
+			name = "NoodleBot";
+			productName = "NoodleBot";
+			productReference = 1D6058910D05DD3D006BFB54 /* NoodleBot.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -237,7 +237,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Graboid */,
+				1D6058900D05DD3D006BFB54 /* NoodleBot */,
 			);
 		};
 /* End PBXProject section */
@@ -291,10 +291,10 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				EA9EE1AD17324FED8193F9DB /* SocketPlugin.m in Sources */,
-				954F6466C2CA42EE95112793 /* SocketAdapter.m in Sources */,
-				33545D9210214B5BB8D2B33D /* CDVStatusBar.m in Sources */,
-				D9DBA384CA2640F4B147B0FE /* CDVLogger.m in Sources */,
+				9B978A4F66094C0B95E49CDB /* CDVLogger.m in Sources */,
+				F162DADE8B5644D09619B320 /* SocketPlugin.m in Sources */,
+				F76BF9F6213E458591092676 /* SocketAdapter.m in Sources */,
+				BBAE25A8F14846768F66EC8A /* CDVStatusBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,14 +322,14 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Graboid/Graboid-Prefix.pch";
+				GCC_PREFIX_HEADER = "NoodleBot/NoodleBot-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "Graboid/Graboid-Info.plist";
+				INFOPLIST_FILE = "NoodleBot/NoodleBot-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				PRODUCT_NAME = "Graboid";
+				PRODUCT_NAME = "NoodleBot";
 			};
 			name = Debug;
 		};
@@ -344,14 +344,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Graboid/Graboid-Prefix.pch";
+				GCC_PREFIX_HEADER = "NoodleBot/NoodleBot-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "Graboid/Graboid-Info.plist";
+				INFOPLIST_FILE = "NoodleBot/NoodleBot-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				PRODUCT_NAME = "Graboid";
+				PRODUCT_NAME = "NoodleBot";
 			};
 			name = Release;
 		};
@@ -409,7 +409,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Graboid" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "NoodleBot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,

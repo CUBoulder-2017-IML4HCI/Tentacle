@@ -7,13 +7,13 @@
         "files": {}
     },
     "installed_plugins": {
-        "cz.blocshop.socketsforcordova": {
+        "cordova-plugin-console": {
             "PACKAGE_NAME": "io.cordova.Graboid"
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "io.cordova.Graboid"
         },
-        "cordova-plugin-console": {
+        "cz.blocshop.socketsforcordova": {
             "PACKAGE_NAME": "io.cordova.Graboid"
         }
     },

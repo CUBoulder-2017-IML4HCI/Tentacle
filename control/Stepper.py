@@ -28,8 +28,8 @@ class Stepper:
   goal_position = 0.0
 
   # Extema limits for this stepper
-  max_position = +400.0
-  min_position = -400.0
+  max_position = +200.0
+  min_position = -200.0
 
   def __init__(self, pins_array, name="Stepper", update_interval_seconds=0.01):
     """Function to set all pins from array. Order is same as on Big Easy board"""
@@ -70,10 +70,18 @@ class Stepper:
 
   def set_delay(self):
     delta = abs(self.goal_position - self.current_position)
+    '''
     if delta < 10:
       stepper_delay = 0.005
     elif delta < 40:
       stepper_delay = 0.0001 + (delta/30)*0.0049
+    else:
+      stepper_delay = 0.0001
+    '''
+    if delta > 80:
+      stepper_delay = 0.005
+    elif delta > 30:
+      stepper_delay = 0.0001 + ((delta-30)/50)*0.0049
     else:
       stepper_delay = 0.0001
 
