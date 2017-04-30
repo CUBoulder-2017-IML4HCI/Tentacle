@@ -27,7 +27,8 @@ class Osc2Steppers:
         print "Created 4 steppers"
 
         self.OSCServer = OSC.OSCServer((osc_ip, osc_port))
-        self.OSCServer.addMsgHandler('/wek/outputs', self.wek_outputs_handler)
+        #self.OSCServer.addMsgHandler('/wek/outputs', self.wek_outputs_handler)
+        self.OSCServer.addMsgHandler('/tenta_emg', self.tenta_emg_handler)
 
         print "Tentacle Control is listening for OSC message /wek/outputs, ip %s port %s" % (osc_ip, osc_port)
 
@@ -36,9 +37,18 @@ class Osc2Steppers:
         """Start steppers self-updating, and start our OSC server listening"""
         #self.stepper_A.go()
         self.stepper_B.go()
-        # self.stepper_C.go()
-        self.stepper_D.go() 
+        #self.stepper_C.go()
+        #self.stepper_D.go() 
         self.OSCServer.serve_forever()
+    
+    def tenta_emg_handler(self, addr, tags, data, client_address):
+        emg_avg = data[0]
+        if emg_avg > 200:
+
+          self.stepper_B.move_to_position(200) #position of closed
+        else:
+          self.stepper_B.move_to_position(0) #position of closed
+          
 
 
     def wek_outputs_handler(self, addr, tags, data, client_address):
