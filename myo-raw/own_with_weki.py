@@ -10,7 +10,7 @@ wek = OSC.OSCClient()
 wek.connect(('127.0.0.1', 6448))
 
 tenta = OSC.OSCClient()
-tenta.connect(('127.0.0.1', 12001))
+tenta.connect(('127.0.0.1', 12000))
 
 def set_output(state):
     oscmsg = OSC.OSCMessage()
@@ -41,7 +41,7 @@ def set_output(state):
     wek.send(oscmsg)
     for i in range(300):
       tenta.send(oscmsg_ping)
-    print(oscmsg)
+    print(oscms
     print(oscmsg_ping)
 
 def start_record():
@@ -76,8 +76,8 @@ def delete():
 
     oscmsg_ping = OSC.OSCMessage()
     oscmsg_ping.setAddress("/wek/outputs")
-    oscmsg_ping.append(float(1.0))
-    oscmsg_ping.append(float(-1.0))
+    oscmsg_ping.append(float(0.0))
+    oscmsg_ping.append(float(0.0))
     for i in range(300):
       tenta.send(oscmsg_ping)
     #tenta.send(oscmsg_reset)
