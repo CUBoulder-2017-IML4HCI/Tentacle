@@ -43,11 +43,13 @@ class Osc2Steppers:
     
     def tenta_emg_handler(self, addr, tags, data, client_address):
         emg_avg = data[0]
-        if emg_avg > 200:
-
-          self.stepper_B.move_to_position(200) #position of closed
-        else:
+        if emg_avg < 125:
           self.stepper_B.move_to_position(0) #position of closed
+        elif emg_avg < 500:
+          pos_interp = 0 + ((emg_avg-125)/float(500-125))*300
+          self.stepper_B.move_to_position(pos_interp) #in between
+        else:
+          self.stepper_B.move_to_position(300) #position of closed
           
 
 
