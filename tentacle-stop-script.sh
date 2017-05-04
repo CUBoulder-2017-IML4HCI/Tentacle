@@ -1,4 +1,4 @@
 #
-kill -9 $(pidof "TentacleControl")
+pkill -9 -f TentacleControl
 
-echo "Killed TentacleControl"
+pkill -9 -f own_with_weki

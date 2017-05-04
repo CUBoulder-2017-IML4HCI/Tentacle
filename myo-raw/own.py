@@ -18,12 +18,13 @@ def send(data, dest, address):
             oscmsg.append(float(elem))
     
     dest.send(oscmsg)
-    print(oscmsg)
-    print(data)
+    #if dest == wek:
+    #print(oscmsg)
+    #print(data)
 
 def imu(quat,acc,gyro):
-    print(quat,acc,gyro)
-    print ("quat: ", quat, " type: ", type(quat))
+    #print(quat,acc,gyro)
+    #print ("quat: ", quat, " type: ", type(quat))
     send(quat, wek, "/wek/inputs")
 
 def pose(p):
@@ -31,7 +32,7 @@ def pose(p):
     
 def emg(emg, moving): 
    emgdat = (sum(emg)/float(len(emg)),)
-   print ("emgdat: ", emgdat, " type: ", type(emgdat))
+   #print ("emgdat: ", emgdat, " type: ", type(emgdat))
    send(emgdat, tenta, "/tenta_emg")
    
 
@@ -39,7 +40,7 @@ if __name__ == '__main__':
     
     m = MyoRaw()
     #m.add_imu_handler(print)    
-    #m.add_imu_handler(imu)
+    m.add_imu_handler(imu)
     #m.add_pose_handler(pose)
     m.add_emg_handler(emg)
     m.connect()

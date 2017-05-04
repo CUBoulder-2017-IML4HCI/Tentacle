@@ -68,6 +68,13 @@ def stop_run():
     oscmsg = OSC.OSCMessage()
     oscmsg.setAddress("/wekinator/control/stopRunning")
     wek.send(oscmsg)
+    
+    #on stop return to the neutral position
+    oscmsg_ping = OSC.OSCMessage()
+    oscmsg_ping.setAddress("/wek/outputs")
+    oscmsg_ping.append(float(0.0))
+    oscmsg_ping.append(float(0.0))
+    tenta.send(oscmsg_ping)
 
 def delete():
     oscmsg = OSC.OSCMessage()
