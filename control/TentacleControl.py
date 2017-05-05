@@ -5,7 +5,7 @@ import OSC
 class Osc2Steppers:
     """Class that listens for OSC messages, and forwards them as target positions for stepper motors"""
 
-    stepper_time_interval_seconds = 0.00
+    stepper_time_interval_seconds = 0.02
 
     def __init__(self, osc_ip='0.0.0.0', osc_port=12000): 
         """Create our stepper object and osc server object"""
@@ -18,7 +18,7 @@ class Osc2Steppers:
         # Pin order:             [ENB|MS1|MS2|MS3|RST|SLP|STP|DIR]
         self.stepper_A = Stepper([  4,  5,  6,  7,  0,  0,  3,  2],
             "Stepper A", self.stepper_time_interval_seconds)
-        self.stepper_B = Stepper([ 10, 11, 12, 13,  0,  0,  9,  8],
+        self.stepper_B = Stepper([ 10, 11, 12, 13,  0,  0,  9,  26],
             "Stepper B", self.stepper_time_interval_seconds)
         self.stepper_C = Stepper([ 16, 17, 18, 19,  0,  0, 15, 14],
             "Stepper C", self.stepper_time_interval_seconds)
@@ -28,6 +28,7 @@ class Osc2Steppers:
 
         self.OSCServer = OSC.OSCServer((osc_ip, osc_port))
         self.OSCServer.addMsgHandler('/wek/outputs', self.wek_outputs_handler)
+        self.OSCServer.addMsgHandler('/tenta_emg', self.tenta_emg_handler)
 
         print "Tentacle Control is listening for OSC message /wek/outputs, ip %s port %s" % (osc_ip, osc_port)
 
@@ -36,16 +37,27 @@ class Osc2Steppers:
         """Start steppers self-updating, and start our OSC server listening"""
         #self.stepper_A.go()
         self.stepper_B.go()
-        # self.stepper_C.go()
+        self.stepper_C.go()
         self.stepper_D.go() 
         self.OSCServer.serve_forever()
+   
+    def tenta_emg_handler(self, addr, tags, data, client_address):
+        emg_avg = data[0]
+        if emg_avg < 125:
+          self.stepper_D.move_to_position(0) #position of closed
+        elif emg_avg < 300:
+          pos_interp = 0 - ((emg_avg-125)/float(300-125))*200
+          self.stepper_D.move_to_position(pos_interp) #in between
+        else:
+          self.stepper_D.move_to_position(-200) #position of closed
+          
 
 
     def wek_outputs_handler(self, addr, tags, data, client_address):
         """Callback that is called when we receive an osc message with path '/wek/outputs'"""
         # 0 controls back and front
         # 1 controls side to side
-        data[0] *= 100
+        data[0] *= 200
         data[1] *= 200 
         if self.debug:
             print "OSCMessage '%s' from %s: %s"  % (addr, client_address, data)
@@ -60,8 +72,8 @@ class Osc2Steppers:
         self.stepper_B.set_delay()
         self.stepper_B.move_to_position(data[0])
         #self.stepper_C.move_to_position(data[2])
-        self.stepper_D.set_delay()
-        self.stepper_D.move_to_position(data[1])
+        self.stepper_C.set_delay()
+        self.stepper_C.move_to_position(data[1])
 
 
 if __name__ == "__main__":
